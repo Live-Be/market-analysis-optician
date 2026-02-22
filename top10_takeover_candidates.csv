@@ -1,0 +1,11 @@
+rank,name,city,street,housenumber,postcode,nearest_competitor_km,competitors_within_10km,dist_to_kufstein_km,score_total,website,phone
+1,Optik Windbichler,Reit im Winkl,Hausbachweg,5,83242,11.28,0,24.92,0.9216,https://www.uhrenschmuck-optik.de,+49 8640 8180
+2,Optik Stang,Mittenwald,Innsbrucker Straße,1,82481,12.84,0,69.96,0.8935,,
+3,Optik- und Akustikhaus,,,,,12.07,0,69.67,0.8712,,
+4,Optik Henseler,Teisendorf,Marktstraße,20,83317,11.04,0,57.30,0.8609,https://www.optik-henseler.de/,
+5,Pauls Brillen,Garching an der Alz,Nikolausstraße,5,84518,11.66,0,68.46,0.8609,https://www.pauls-brillen.de/,
+6,Der Brillenmacher,Geltendorf,Bahnhofstraße,117,82269,13.52,0,102.77,0.8596,,
+7,Wiedenmann,Laufen,Marienplatz,2,83410,11.58,0,69.89,0.8561,http://www.optikhaus-laufen.de,+49 8682 7651
+8,Optik Gabriel,Aschau im Chiemgau,Bahnhofstraße,22,83229,8.54,4,24.69,0.8324,https://optik-gabriel.de/,+49 8052 4700
+9,Adam,Tutzing,Kirchenstraße,5,82327,10.88,0,75.80,0.8258,,
+10,Sehenswert.optik,Bad Kohlgrub,Hauptstraße,4,82433,10.98,0,83.84,0.8155,https://www.sehenswertoptik.de,
