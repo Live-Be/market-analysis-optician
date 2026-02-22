@@ -2,8 +2,15 @@ import csv
 from pathlib import Path
 
 INPUT_FILE = Path('analysis_optiker_opticians_enriched.csv')
-OUTPUT_FILE = Path('top10_takeover_candidates.csv')
-REPORT_FILE = Path('top10_takeover_candidates.md')
+TOP_N = 30
+
+OUTPUT_FILE = Path(f'top{TOP_N}_takeover_candidates.csv')
+REPORT_FILE = Path(f'top{TOP_N}_takeover_candidates.md')
+
+# Reduced Kufstein influence: stronger focus on competition landscape.
+WEIGHT_NEAREST_COMPETITOR = 0.50
+WEIGHT_LOCAL_DENSITY = 0.40
+WEIGHT_KUFSTEIN_DISTANCE = 0.10
 
 CHAIN_KEYWORDS = [
     'apollo', 'fielmann', 'hartlauer', 'pearle', 'ace & tate', 'abele', 'aktiv optik',
@@ -61,7 +68,12 @@ for r in rows:
     if r['dist_to_kufstein_km'] is None or r['competitors_within_10km'] is None or r['nearest_competitor_km'] is None:
         continue
 
-    key = (name.lower(), (r.get('city') or '').strip().lower(), (r.get('street') or '').strip().lower(), (r.get('housenumber') or '').strip().lower())
+    key = (
+        name.lower(),
+        (r.get('city') or '').strip().lower(),
+        (r.get('street') or '').strip().lower(),
+        (r.get('housenumber') or '').strip().lower(),
+    )
     if key in seen:
         continue
     seen.add(key)
@@ -75,20 +87,26 @@ for r in candidates:
     nearest_score = normalize(r['nearest_competitor_km'], min(nearest_vals), max(nearest_vals), invert=False)
     density_score = normalize(r['competitors_within_10km'], min(comp_vals), max(comp_vals), invert=True)
     kufstein_score = normalize(r['dist_to_kufstein_km'], min(kuf_vals), max(kuf_vals), invert=True)
-    r['score_total'] = round(0.40 * nearest_score + 0.35 * density_score + 0.25 * kufstein_score, 4)
+
+    r['score_total'] = round(
+        WEIGHT_NEAREST_COMPETITOR * nearest_score
+        + WEIGHT_LOCAL_DENSITY * density_score
+        + WEIGHT_KUFSTEIN_DISTANCE * kufstein_score,
+        4,
+    )
 
 candidates.sort(key=lambda r: r['score_total'], reverse=True)
-top10 = candidates[:10]
+top_candidates = candidates[:TOP_N]
 
 with OUTPUT_FILE.open('w', newline='', encoding='utf-8') as f:
     fields = [
         'rank', 'name', 'city', 'street', 'housenumber', 'postcode',
         'nearest_competitor_km', 'competitors_within_10km', 'dist_to_kufstein_km', 'score_total', 'website', 'phone'
     ]
-    w = csv.DictWriter(f, fieldnames=fields)
-    w.writeheader()
-    for i, r in enumerate(top10, start=1):
-        w.writerow({
+    writer = csv.DictWriter(f, fieldnames=fields)
+    writer.writeheader()
+    for i, r in enumerate(top_candidates, start=1):
+        writer.writerow({
             'rank': i,
             'name': r.get('name', ''),
             'city': r.get('city', ''),
@@ -104,13 +122,14 @@ with OUTPUT_FILE.open('w', newline='', encoding='utf-8') as f:
         })
 
 with REPORT_FILE.open('w', encoding='utf-8') as f:
-    f.write('# Top 10 Übernahmekandidaten (Optikgeschäfte)\n\n')
-    f.write('Kriterien: großer Abstand zum nächsten Konkurrenzoptiker, geringe Optikerdichte im 10-km-Radius, keine Ketten, kurze Distanz nach Kufstein.\n\n')
+    f.write(f'# Top {TOP_N} Übernahmekandidaten (Optikgeschäfte)\n\n')
+    f.write('Kriterien: großer Abstand zum nächsten Konkurrenzoptiker, geringe Optikerdichte im 10-km-Radius, keine Ketten, Distanz nach Kufstein mit reduzierter Gewichtung.\n\n')
+    f.write(f'Gewichtung: nächster Konkurrent {WEIGHT_NEAREST_COMPETITOR:.0%}, Dichte 10km {WEIGHT_LOCAL_DENSITY:.0%}, Distanz Kufstein {WEIGHT_KUFSTEIN_DISTANCE:.0%}.\n\n')
     f.write('| Rang | Name | Ort | Nächster Konkurrent (km) | Optiker im 10km-Radius | Distanz nach Kufstein (km) | Score |\n')
     f.write('|---:|---|---|---:|---:|---:|---:|\n')
-    for i, r in enumerate(top10, start=1):
+    for i, r in enumerate(top_candidates, start=1):
         f.write(
-            f"| {i} | {r.get('name','')} | {r.get('city','')} | {r['nearest_competitor_km']:.2f} | {r['competitors_within_10km']} | {r['dist_to_kufstein_km']:.2f} | {r['score_total']:.4f} |\\n"
+            f"| {i} | {r.get('name', '')} | {r.get('city', '')} | {r['nearest_competitor_km']:.2f} | {r['competitors_within_10km']} | {r['dist_to_kufstein_km']:.2f} | {r['score_total']:.4f} |\n"
         )
 
-print(f'Created {OUTPUT_FILE} and {REPORT_FILE} with {len(top10)} entries from {len(candidates)} independent candidates.')
+print(f'Created {OUTPUT_FILE} and {REPORT_FILE} with {len(top_candidates)} entries from {len(candidates)} independent candidates.')
