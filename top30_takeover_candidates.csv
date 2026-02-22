@@ -1,0 +1,31 @@
+rank,name,city,street,housenumber,postcode,nearest_competitor_km,competitors_within_10km,dist_to_kufstein_km,score_total,website,phone
+1,Der Brillenmacher,Geltendorf,Bahnhofstraße,117,82269,13.52,0,102.77,0.9438,,
+2,Optik Stang,Mittenwald,Innsbrucker Straße,1,82481,12.84,0,69.96,0.9402,,
+3,Optik Windbichler,Reit im Winkl,Hausbachweg,5,83242,11.28,0,24.92,0.9123,https://www.uhrenschmuck-optik.de,+49 8640 8180
+4,Optik- und Akustikhaus,,,,,12.07,0,69.67,0.9119,,
+5,Pauls Brillen,Garching an der Alz,Nikolausstraße,5,84518,11.66,0,68.46,0.8974,https://www.pauls-brillen.de/,
+6,Wiedenmann,Laufen,Marienplatz,2,83410,11.58,0,69.89,0.8934,http://www.optikhaus-laufen.de,+49 8682 7651
+7,Optik Henseler,Teisendorf,Marktstraße,20,83317,11.04,0,57.30,0.8818,https://www.optik-henseler.de/,
+8,Adam,Tutzing,Kirchenstraße,5,82327,10.88,0,75.80,0.8638,,
+9,Sehenswert.optik,Bad Kohlgrub,Hauptstraße,4,82433,10.98,0,83.84,0.8621,https://www.sehenswertoptik.de,
+10,Augenoptik Forscht Hörakustik,,,,,11.78,0,158.48,0.8426,,
+11,Optik Hohenrein,Waging am See,Salzburger Straße,19,83329,9.66,6,57.70,0.8160,,
+12,Sichtwerkstatt,Isen,Münchner Straße,6,84424,9.64,3,70.44,0.8142,http://www.sichtwerkstatt-dorfen.de,
+13,Optik Zankl,,,,,10.00,1,112.75,0.8043,,
+14,Optik Gabriel,Aschau im Chiemgau,Bahnhofstraße,22,83229,8.54,4,24.69,0.8013,https://optik-gabriel.de/,+49 8052 4700
+15,Optik Lenggries,,,,,8.78,4,45.66,0.7963,,
+16,Tannek,,,,,9.63,1,108.49,0.7935,,
+17,Uhren Schmuck Augenoptik Hitzl,Glonn,Prof.-Lebsche-Straße,4,85625,8.76,6,50.21,0.7876,http://www.hitzl.de/,+49 8093 9180
+18,Optik Heigl,Altomünster,Bahnhofstraße,10,85250,9.63,3,112.21,0.7862,,
+19,Optik Johannes,Petershausen,Bahnhofstraße,27,85238,8.73,2,105.71,0.7598,https://www.johannes-optik.de/,+49 8137 8426
+20,Carpion,,,,,7.51,1,41.09,0.7595,,
+21,Optik Straßer,,,,,7.51,1,47.88,0.7550,https://www.ritter-optik.de/,
+22,Optik am Markt,Wartenberg,Marktplatz,6,85456,7.98,4,92.30,0.7358,https://www.optik-a-markt.de/startseite/,
+23,Die Optikerin,Bad Endorf,Bahnhofstraße,8,83093,6.69,2,37.38,0.7291,,
+24,Wendelstein Optik,,,,,6.00,1,17.63,0.7192,https://wendelstein-optik.de/,+49 8034 3334
+25,Köstlin Optik,,,,,7.02,6,57.76,0.7183,https://www.koestlin-optik.de/sauerlach.html,+49 8104 668287
+26,Wittmann,Burgkirchen an der Alz,Martin-Ofner-Straße,3,84508,7.16,9,77.44,0.7032,,
+27,Sehen und Hören Chiemsee,,,,,5.83,2,35.98,0.6983,,
+28,FUNK Optik Sehzentrum Kinsau,Kinsau,Gewerbestraße,9,86981,7.10,4,100.60,0.6980,https://www.funkoptik.com,+49 8869 9129191
+29,Optik + Hörgeräte Lanzinger,Raubling,Bahnhofstraße,12,83064,6.00,13,23.39,0.6863,https://www.optik-lanzinger.de/,
+30,Augenoptik Yvette Simon,,,,,6.91,6,102.17,0.6851,,
